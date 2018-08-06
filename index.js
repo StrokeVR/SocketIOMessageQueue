@@ -45,12 +45,16 @@ io.on('connection', function(socket){
     socket.broadcast.emit("USER_DISCONNECTED", currentUser);
     for(var i = 0; i < clients.length; i++)
     {
-      //console.log(clients[i].name === currentUser.name);
-       if (clients[i].name === currentUser.name)
-       {
-        console.log("User " + clients[i].name + " disoconnected");
-        clients.splice(i,1);
-       }
+      if (clients[i] != undefined && currentUser != undefined)
+      {
+  //console.log(clients[i].name === currentUser.name);
+  if (clients[i].name === currentUser.name)
+  {
+    console.log("User " + clients[i].name + " disoconnected");
+    clients.splice(i,1);
+    }
+      }
+      
     }
   });
   socket.on("removeClient", function(data)
